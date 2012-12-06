@@ -78,7 +78,11 @@ def run():
     logger.addHandler(logging.StreamHandler())
 
     # Run
-    markdown.markdownFromFile(**options)
+    try:
+        markdown.markdownFromFile(**options)
+    except IOError, e:
+        logging.error(e)
+    
 
 if __name__ == '__main__':
     # Support running module as a commandline command. 
